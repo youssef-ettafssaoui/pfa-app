@@ -78,10 +78,10 @@
                                 </li>
 
                                 <li class="nav-item">
-                                    <a class="nav-link" href="contact.html">Contact</a>
+                                    <a class="nav-link" href="{{ url('/register') }}">Espace Patients</a>
                                 </li>
                                 <li class="d-none d-lg-block">
-                                    <a class="btn_1" href="#">Se Connecter</a>
+                                    <a class="btn_1" href="{{ url('/login') }}">Se Connecter</a>
                                 </li>
                             </ul>
                         </div>
