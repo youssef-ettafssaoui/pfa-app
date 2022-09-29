@@ -15,7 +15,7 @@ class DepartmentController extends Controller
     public function index()
     {
         $departments = Department::get();
-        return view('admin.department.index',compact('departments'));
+        return view('admin.department.index', compact('departments'));
     }
 
     /**
@@ -36,11 +36,11 @@ class DepartmentController extends Controller
      */
     public function store(Request $request)
     {
-        $this->validate($request,[
-            'department'=>'required'
+        $this->validate($request, [
+            'department' => 'required'
         ]);
         Department::create($request->all());
-        return redirect()->back()->with('message','Département créé avec succès !');
+        return redirect()->route('department.index')->with('message', 'Département créé avec succès !');
     }
 
     /**
@@ -63,7 +63,7 @@ class DepartmentController extends Controller
     public function edit($id)
     {
         $department = Department::find($id);
-        return view('admin.department.edit',compact('department'));
+        return view('admin.department.edit', compact('department'));
     }
 
     /**
@@ -75,13 +75,13 @@ class DepartmentController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $this->validate($request,[
-            'department'=>'required'
+        $this->validate($request, [
+            'department' => 'required'
         ]);
         $department = Department::find($id);
         $department->department = $request->department;
         $department->save();
-        return redirect()->route('department.index')->with('message','Département mis à jour avec Succès !');
+        return redirect()->route('department.index')->with('message', 'Département mis à jour avec Succès !');
     }
 
     /**
@@ -94,6 +94,6 @@ class DepartmentController extends Controller
     {
         $department = Department::find($id);
         $department->delete();
-        return redirect()->route('department.index')->with('message','Département supprimé avec Succès !');
+        return redirect()->route('department.index')->with('message', 'Département supprimé avec Succès !');
     }
 }

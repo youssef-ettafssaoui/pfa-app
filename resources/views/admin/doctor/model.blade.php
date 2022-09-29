@@ -9,20 +9,45 @@
                        </button>
                    </div>
                    <div class="modal-body">
-                       <p><img src="{{ asset('images') }}/{{ $user->image }}" class="table-user-thumb" alt=""
-                               width="200"></p>
-                       <p class="badge badge-pill badge-dark">Role:{{ $user->role->name }}</p>
-                       <p>Name:{{ $user->gender }}</p>
-                       <p>Name:{{ $user->name }}</p>
-                       <p>Email:{{ $user->email }}</p>
-                       <p>Address:{{ $user->address }}</p>
-                       <p>Phone number:{{ $user->phone_number }}</p>
-                       <p>Department:{{ $user->department }}</p>
-                       <p>Education:{{ $user->education }}</p>
-                       <p>About:{{ $user->description }}</p>
+                       <center>
+                           <img src="{{ asset('images') }}/{{ $user->image }}" alt="" width="200"
+                               class="img-circle"></a>
+                           <h3 class="media-heading">{{ $user->name }}</h3>
+                           <div class="form-group">
+                               <p style="font-size: 14px" class="badge badge-primary">Spécialité
+                                   :
+                                   {{ $user->department }}
+                               </p>
+                               <p style="font-size: 14px" class="badge badge-primary">Role :
+                                   {{ $user->role->name }}</p>
+
+                               <p style="font-size: 14px" class="badge badge-primary">Adresse Email :
+                                   {{ $user->email }}
+                               </p>
+                               <p style="font-size: 14px" class="badge badge-primary">
+                                   Adresse de Résidence : {{ $user->address }}</p>
+                               <p style="font-size: 14px" class="badge badge-primary">Numéro de Contact :
+                                   {{ $user->phone_number }}</p>
+
+                               <p style="font-size: 14px" class="badge badge-primary">Sexe :
+                                   {{ $user->gender }}</p>
+                               <p style="font-size: 14px" class="badge badge-primary">Education :
+                                   {{ $user->education }}</p>
+                           </div>
+
+                       </center>
+                       <hr>
+                       <center>
+                           <p class="text-left">
+                               <strong class="text text-primary">Bref Description : </strong><br>
+                               {{ $user->description }}
+                           </p>
+                           <br>
+                       </center>
                    </div>
                    <div class="modal-footer">
-                       <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+                       <button type="button" class="btn btn-warning" data-dismiss="modal">j'en ai assez entendu parler
+                           de {{ $user->name }}</button>
 
                    </div>
                </div>

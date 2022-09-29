@@ -19,13 +19,10 @@
                     <div class="nav-item active">
                         <a href="{{ url('dashboard') }}"><i class="ik ik-bar-chart-2"></i><span>Dashboard</span></a>
                     </div>
-                    <!--   <div class="nav-item">
-                                    <a href="pages/navbar.html"><i class="ik ik-menu"></i><span>Navigation</span> <span class="badge badge-success">New</span></a>
-                                </div> -->
 
                     @if (auth()->check() && auth()->user()->role->name === 'admin')
                         <div class="nav-item has-sub">
-                            <a href="javascript:void(0)"><i class="ik ik-layers"></i><span>Département</span> <span
+                            <a href="javascript:void(0)"><i class="ik ik-home"></i><span>Département</span> <span
                                     class="badge badge-danger"></span></a>
                             <div class="submenu-content">
                                 <a href="{{ route('department.create') }}" class="menu-item">Créer</a>
@@ -37,7 +34,7 @@
 
                     @if (auth()->check() && auth()->user()->role->name === 'admin')
                         <div class="nav-item has-sub">
-                            <a href="javascript:void(0)"><i class="ik ik-layers"></i><span>Médecin</span> <span
+                            <a href="javascript:void(0)"><i class="ik ik-users"></i><span>Médecin</span> <span
                                     class="badge badge-danger"></span></a>
                             <div class="submenu-content">
                                 <a href="{{ route('doctor.create') }}" class="menu-item">Créer</a>
@@ -75,7 +72,7 @@
 
                     @if (auth()->check() && auth()->user()->role->name === 'admin')
                         <div class="nav-item has-sub">
-                            <a href="javascript:void(0)"><i class="ik ik-layers"></i><span>Rendez-vous
+                            <a href="javascript:void(0)"><i class="ik ik-bell"></i><span>Rendez-vous
                                     Patients</span>
                                 <span class="badge badge-danger"></span></a>
                             <div class="submenu-content">
