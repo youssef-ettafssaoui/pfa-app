@@ -1,6 +1,8 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\HomeController;
+use App\Http\Controllers\DoctorController;
 
 /*
 |--------------------------------------------------------------------------
@@ -22,4 +24,9 @@ Route::get('/dashboard', function () {
 });
 Auth::routes();
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/home', [HomeController::class, 'index'])->name('home');
+
+Route::group(['middleware'=>['auth','admin']],function() {
+    Route::resource('doctor', DoctorController::class);
+    Route::resource('utilisateur', UtilisateursController::class);
+});
