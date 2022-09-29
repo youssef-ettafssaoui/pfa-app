@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\DoctorController;
+use Illuminate\Support\Facades\Auth;
 
 /*
 |--------------------------------------------------------------------------
@@ -26,7 +27,7 @@ Auth::routes();
 
 Route::get('/home', [HomeController::class, 'index'])->name('home');
 
-Route::group(['middleware'=>['auth','admin']],function() {
+Route::group(['middleware' => ['auth', 'admin']], function () {
     Route::resource('doctor', DoctorController::class);
     Route::resource('utilisateur', UtilisateursController::class);
 });
