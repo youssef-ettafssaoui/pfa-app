@@ -22,6 +22,19 @@
 
                     @if (auth()->check() && auth()->user()->role->name === 'admin')
                         <div class="nav-item has-sub">
+                            <a href="javascript:void(0)"><i class="ik ik-settings"></i><span>Paramètres
+                                </span>
+                                <span class="badge badge-danger"></span></a>
+                            <div class="submenu-content">
+                                <a href="{{ route('site.setting') }}" class="menu-item">Site</a>
+                                <a href="{{ route('seo.setting') }}" class="menu-item">Seo</a>
+
+                            </div>
+                        </div>
+                    @endif
+
+                    @if (auth()->check() && auth()->user()->role->name === 'admin')
+                        <div class="nav-item has-sub">
                             <a href="javascript:void(0)"><i class="ik ik-home"></i><span>Département</span> <span
                                     class="badge badge-danger"></span></a>
                             <div class="submenu-content">

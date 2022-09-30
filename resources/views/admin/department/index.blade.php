@@ -32,7 +32,7 @@
     <div class="row">
         <div class="col-md-12">
             @if (Session::has('message'))
-                <div class="alert bg-success alert-success text-white" role="alert">
+                <div class="alert bg-primary alert-primary text-white" role="alert">
                     {{ Session::get('message') }}
                 </div>
             @endif
@@ -44,8 +44,8 @@
                             <tr>
                                 <th>SN</th>
                                 <th>Départements</th>
-                                <th class="nosort">&nbsp;</th>
-                                <th class="nosort">&nbsp;</th>
+                                <th class="nosort"></th>
+                                <th class="nosort"></th>
                             </tr>
                         </thead>
                         <tbody>
@@ -56,7 +56,7 @@
                                         <td>{{ $department->department }}</td>
 
                                         <td>
-                                            <div class="form-group">
+                                            <div class="table-actions">
 
                                                 <a href="{{ route('department.edit', [$department->id]) }}"><i
                                                         class="ik ik-edit-2 text-success"></i></a>
@@ -65,8 +65,7 @@
                                                 <form action="{{ route('department.destroy', [$department->id]) }}"
                                                     method="post">@csrf
                                                     @method('DELETE')
-                                                    <button type="submit"><i
-                                                            class="ik ik-trash-2 text-danger"></i></button>
+                                                    <a type="submit"><i class="ik ik-trash-2 text-danger"></i></a>
 
                                                 </form>
 
