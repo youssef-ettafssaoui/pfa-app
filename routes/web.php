@@ -5,6 +5,7 @@ use App\Http\Controllers\DepartmentController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\DoctorController;
+use App\Http\Controllers\FactureController;
 use App\Http\Controllers\PatientlistController;
 use App\Http\Controllers\PrescriptionController;
 use App\Http\Controllers\SiteSettingController;
@@ -34,6 +35,8 @@ Route::get('/home', [HomeController::class, 'index'])->name('home');
 
 Route::group(['middleware' => ['auth', 'admin']], function () {
     Route::resource('doctor', DoctorController::class);
+    Route::resource('facture', FactureController::class);
+    Route::get('facture/print/{id}', [FactureController::class, 'print'])->name('facture.print');
     Route::get('/patients', [PatientlistController::class, 'index'])->name('patient');
     Route::get('/patients/all', [PatientlistController::class, 'allTimeAppointment'])->name('all.appointments');
     Route::get('/status/update/{id}', [PatientlistController::class, 'toggleStatus'])->name('update.status');

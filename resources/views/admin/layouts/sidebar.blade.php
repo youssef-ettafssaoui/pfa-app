@@ -80,9 +80,6 @@
                         </div>
                     @endif
 
-
-
-
                     @if (auth()->check() && auth()->user()->role->name === 'admin')
                         <div class="nav-item has-sub">
                             <a href="javascript:void(0)"><i class="ik ik-bell"></i><span>Rendez-vous
@@ -91,6 +88,19 @@
                             <div class="submenu-content">
                                 <a href="{{ route('patient') }}" class="menu-item">Today Appointment</a>
                                 <a href="{{ route('all.appointments') }}" class="menu-item">All Time Appointment</a>
+
+                            </div>
+                        </div>
+                    @endif
+
+                    @if (auth()->check() && auth()->user()->role->name === 'admin')
+                        <div class="nav-item has-sub">
+                            <a href="javascript:void(0)"><i class="ik ik-folder"></i><span>Factures
+                                </span>
+                                <span class="badge badge-danger"></span></a>
+                            <div class="submenu-content">
+                                <a href="{{ route('facture.index') }}" class="menu-item">Consulter</a>
+                                <a href="{{ route('facture.create') }}" class="menu-item">Créer Facture</a>
 
                             </div>
                         </div>
