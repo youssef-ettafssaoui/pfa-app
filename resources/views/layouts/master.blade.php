@@ -4,4 +4,4 @@
         @yield('content')
     </div>
 </section>
-@include('admin.layouts.footer')
+@include('layouts.footer')
