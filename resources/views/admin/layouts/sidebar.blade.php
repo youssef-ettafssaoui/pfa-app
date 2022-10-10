@@ -47,6 +47,30 @@
 
                     @if (auth()->check() && auth()->user()->role->name === 'admin')
                         <div class="nav-item has-sub">
+                            <a href="javascript:void(0)"><i class="ik ik-box"></i><span>Médicament</span> <span
+                                    class="badge badge-danger"></span></a>
+                            <div class="submenu-content">
+                                <a href="{{ route('medicament.create') }}" class="menu-item">Créer</a>
+                                <a href="{{ route('medicament.index') }}" class="menu-item">Consulter</a>
+
+                            </div>
+                        </div>
+                    @endif
+
+                    @if (auth()->check() && auth()->user()->role->name === 'admin')
+                        <div class="nav-item has-sub">
+                            <a href="javascript:void(0)"><i class="ik ik-file"></i><span>Analyses</span> <span
+                                    class="badge badge-danger"></span></a>
+                            <div class="submenu-content">
+                                <a href="{{ route('analyses.create') }}" class="menu-item">Créer</a>
+                                <a href="{{ route('analyses.index') }}" class="menu-item">Consulter</a>
+
+                            </div>
+                        </div>
+                    @endif
+
+                    @if (auth()->check() && auth()->user()->role->name === 'admin')
+                        <div class="nav-item has-sub">
                             <a href="javascript:void(0)"><i class="ik ik-users"></i><span>Médecin</span> <span
                                     class="badge badge-danger"></span></a>
                             <div class="submenu-content">
@@ -111,7 +135,8 @@
                                                      document.getElementById('logout-form').submit();"
                             href="{{ route('logout') }}"><i
                                 class="ik ik-power dropdown-icon"></i><span>Logout</span></a>
-                        <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                        <form id="logout-form" action="{{ route('logout') }}" method="POST"
+                            style="display: none;">
                             @csrf
                         </form>
                     </div>

@@ -1,11 +1,13 @@
 <?php
 
+use App\Http\Controllers\AnalyseController;
 use App\Http\Controllers\AppointmentController;
 use App\Http\Controllers\DepartmentController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\DoctorController;
 use App\Http\Controllers\FactureController;
+use App\Http\Controllers\MedicamentsController;
 use App\Http\Controllers\PatientlistController;
 use App\Http\Controllers\PrescriptionController;
 use App\Http\Controllers\SiteSettingController;
@@ -41,6 +43,8 @@ Route::group(['middleware' => ['auth', 'admin']], function () {
     Route::get('/patients/all', [PatientlistController::class, 'allTimeAppointment'])->name('all.appointments');
     Route::get('/status/update/{id}', [PatientlistController::class, 'toggleStatus'])->name('update.status');
     Route::resource('department', DepartmentController::class);
+    Route::resource('medicament', MedicamentsController::class);
+    Route::resource('analyses', AnalyseController::class);
 
     // Admin Site Setting Routes :
     Route::get('/site', [SiteSettingController::class, 'SiteSetting'])->name('site.setting');

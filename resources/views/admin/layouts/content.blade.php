@@ -90,6 +90,48 @@
                         <div class="widget-body">
                             <div class="d-flex justify-content-between align-items-center">
                                 <div class="state">
+                                    <h6>Analyses</h6>
+                                    <h2>{{ App\Models\Analyse::count() }}</h2>
+                                </div>
+                                <div class="icon">
+                                    <i class="ik ik-file"></i>
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="progress progress-sm">
+                            <div class="progress-bar bg-info" role="progressbar" aria-valuenow="20" aria-valuemin="0"
+                                aria-valuemax="100" style="width: 20%;"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-3 col-md-6 col-sm-12">
+                    <div class="widget">
+                        <div class="widget-body">
+                            <div class="d-flex justify-content-between align-items-center">
+                                <div class="state">
+                                    <h6>Médicaments</h6>
+                                    <h2>{{ App\Models\Medicament::count() }}</h2>
+                                </div>
+                                <div class="icon">
+                                    <i class="ik ik-box"></i>
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="progress progress-sm">
+                            <div class="progress-bar bg-danger" role="progressbar" aria-valuenow="20" aria-valuemin="0"
+                                aria-valuemax="100" style="width: 20%;"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-3 col-md-6 col-sm-12">
+                    <div class="widget">
+                        <div class="widget-body">
+                            <div class="d-flex justify-content-between align-items-center">
+                                <div class="state">
                                     <h6>Prescription</h6>
                                     <h2>{{ App\Models\Prescription::count() }}</h2>
                                 </div>
@@ -121,8 +163,8 @@
 
                         </div>
                         <div class="progress progress-sm">
-                            <div class="progress-bar bg-info" role="progressbar" aria-valuenow="20" aria-valuemin="0"
-                                aria-valuemax="100" style="width: 20%;"></div>
+                            <div class="progress-bar bg-info" role="progressbar" aria-valuenow="20"
+                                aria-valuemin="0" aria-valuemax="100" style="width: 20%;"></div>
                         </div>
                     </div>
                 </div>
