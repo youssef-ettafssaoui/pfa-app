@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\AccueilController;
+use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\AnalyseController;
 use App\Http\Controllers\AppointmentController;
 use App\Http\Controllers\DepartmentController;
@@ -7,6 +9,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\DoctorController;
 use App\Http\Controllers\FactureController;
+use App\Http\Controllers\FrontendController;
 use App\Http\Controllers\MedicamentsController;
 use App\Http\Controllers\PatientlistController;
 use App\Http\Controllers\PrescriptionController;
@@ -24,9 +27,7 @@ use Illuminate\Support\Facades\Auth;
 |
 */
 
-Route::get('/', function () {
-    return view('home');
-});
+Route::get('/', [FrontendController::class, 'index'])->name('accueil');
 
 Route::get('/dashboard', function () {
     return view('dashboard ');
@@ -34,6 +35,12 @@ Route::get('/dashboard', function () {
 Auth::routes();
 
 Route::get('/home', [HomeController::class, 'index'])->name('home');
+
+Route::get('/medicaments/{id}/{medicament}', [AccueilController::class, 'show'])->name('medicaments.show');
+
+Route::get('/medicaments/allmedicaments', [AccueilController::class, 'allmedicaments'])->name('allmedicaments');
+
+Route::get('/medecins', [AccueilController::class, 'medecin'])->name('medecin');
 
 Route::group(['middleware' => ['auth', 'admin']], function () {
     Route::resource('doctor', DoctorController::class);
@@ -63,4 +70,14 @@ Route::group(['middleware' => ['auth', 'doctor']], function () {
 
     Route::get('/prescription/{userId}/{date}', [PrescriptionController::class, 'show'])->name('prescription.show');
     Route::get('/prescribed-patients', [PrescriptionController::class, 'patientsFromPrescription'])->name('prescribed.patients');
+});
+
+Route::group(['middleware' => ['auth', 'patient']], function () {
+    Route::post('/book/appointment', [FrontendController::class, 'store'])->name('booking.appointment');
+    Route::get('/my-booking', [FrontendController::class, 'myBookings'])->name('my.booking');
+    Route::get('/my-prescription', [FrontendController::class, 'myPrescription'])->name('my.prescription');
+
+    Route::post('/user-profile', [ProfileController::class, 'store'])->name('profile.store');
+    Route::get('/user-profile', [ProfileController::class, 'index']);
+    Route::post('/profile-pic', [ProfileController::class, 'profilePic'])->name('profile.pic');
 });

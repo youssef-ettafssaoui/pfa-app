@@ -1,9 +1,25 @@
 <!doctype html>
 <html lang="en">
+@php
+    $seo = App\Models\Seo::find(1);
+    $setting = App\Models\SiteSetting::find(1);
+@endphp
 
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="{{ $seo->meta_description }}">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
+
+    <meta name="author" content="{{ $seo->meta_author }}">
+    <meta name="keywords" content="{{ $seo->meta_keyword }}">
+
+    <!-- /// Google Analytics Code // -->
+    <script>
+        {{ $seo->google_analytics }}
+    </script>
+    <!-- /// Google Analytics Code // -->
+
     <title>medical</title>
     <link rel="icon" href="{{ asset('front/img/favicon.png') }}">
     <!-- Bootstrap CSS -->
@@ -24,6 +40,9 @@
     <link rel="stylesheet" href="{{ asset('front/css/slick.css') }}">
     <!-- style CSS -->
     <link rel="stylesheet" href="{{ asset('front/css/style.css') }}">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" />
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/fullcalendar@3.9.0/dist/fullcalendar.min.css" />
 </head>
 
 <body>
@@ -33,8 +52,7 @@
             <div class="row align-items-center">
                 <div class="col-lg-12">
                     <nav class="navbar navbar-expand-lg navbar-light">
-                        <a class="navbar-brand" href="index.html"> <img src="{{ asset('front/img/logo.png') }}"
-                                alt="logo"> </a>
+                        <a href="{{ route('accueil') }}"> <img src="{{ asset($setting->logo) }}" alt="logo"> </a>
                         <button class="navbar-toggler" type="button" data-toggle="collapse"
                             data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
                             aria-expanded="false" aria-label="Toggle navigation">

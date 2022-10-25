@@ -104,6 +104,19 @@
                         </div>
                     @endif
 
+                    @if (auth()->check() && auth()->user()->role->name === 'patient')
+                        <div class="nav-item">
+                            <a href="{{ route('my.booking') }}"><i class="ik ik-calendar"></i><span>Booking</span></a>
+                        </div>
+                    @endif
+                    @if (auth()->check() && auth()->user()->role->name === 'patient')
+                        <div class="nav-item">
+                            <a href="{{ route('my.prescription') }}"><i
+                                    class="ik ik-file"></i><span>Ordonnances</span></a>
+                        </div>
+                    @endif
+
+
                     @if (auth()->check() && auth()->user()->role->name === 'admin')
                         <div class="nav-item has-sub">
                             <a href="javascript:void(0)"><i class="ik ik-bell"></i><span>Rendez-vous
@@ -130,6 +143,9 @@
                         </div>
                     @endif
 
+                    <div class="nav-item active">
+                        <a href="{{ route('accueil') }}"><i class="ik ik-home"></i><span>Accueil</span></a>
+                    </div>
                     <div class="nav-item active">
                         <a onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();"

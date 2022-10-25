@@ -6,10 +6,10 @@
         <div class="row align-items-end">
             <div class="col-lg-8">
                 <div class="page-header-title">
-                    <i class="ik ik-inbox bg-blue"></i>
+                    <i class="ik ik-box bg-blue"></i>
                     <div class="d-inline">
-                        <h5>Analyses</h5>
-                        <span>Liste des Analyses</span>
+                        <h5>Médicaments</h5>
+                        <span>Liste des Médicaments</span>
                     </div>
                 </div>
             </div>
@@ -20,7 +20,7 @@
                             <a href="../index.html"><i class="ik ik-home"></i></a>
                         </li>
                         <li class="breadcrumb-item">
-                            <a href="#">Analyses</a>
+                            <a href="#">Médicaments</a>
                         </li>
                         <li class="breadcrumb-item active" aria-current="page">Index</li>
                     </ol>

@@ -4,9 +4,14 @@ namespace App\Http\Controllers;
 
 use App\Models\Appointment;
 use App\Models\Booking;
+use App\Models\Department;
+use App\Models\Medicament;
+use App\Models\Post;
 use App\Models\Prescription;
+use App\Models\Testimonial;
 use App\Models\Time;
 use App\Models\User;
+use Exception;
 use Illuminate\Http\Request;
 
 class FrontendController extends Controller
@@ -19,7 +24,11 @@ class FrontendController extends Controller
             return view('welcome', compact('doctors'));
         }
         $doctors = Appointment::where('date', date('Y-m-d'))->get();
-        return view('welcome', compact('doctors'));
+        $departments = Department::latest()->limit(10)->get();
+        $medecins = User::latest()->limit(4)->where('role_id', 1)->get();
+        $posts = Post::where('status', 1)->get();
+        $testimonial = Testimonial::orderBy('id', 'DESC')->first();
+        return view('home', compact('doctors', 'medecins', 'departments', 'posts', 'testimonial'));
     }
 
     public function show($doctorId, $date)
@@ -37,6 +46,7 @@ class FrontendController extends Controller
         $doctors = Appointment::where('date', $date)->get();
         return $doctors;
     }
+
     public function store(Request $request)
     {
         date_default_timezone_set('Australia/Melbourne');
@@ -59,7 +69,7 @@ class FrontendController extends Controller
         Time::where('appointment_id', $request->appointmentId)
             ->where('time', $request->time)
             ->update(['status' => 1]);
-        //send email notification
+        // send email notification
         $doctorName = User::where('id', $request->doctorId)->first();
         $mailData = [
             'name' => auth()->user()->name,
@@ -71,7 +81,7 @@ class FrontendController extends Controller
         try {
             // \Mail::to(auth()->user()->email)->send(new AppointmentMail($mailData));
 
-        } catch (\Exception $e) {
+        } catch (Exception $e) {
         }
 
         return redirect()->back()->with('message', 'Votre rendez-vous a été pris !');
@@ -107,5 +117,67 @@ class FrontendController extends Controller
     {
         $doctors = Appointment::with('doctor')->whereDate('date', $request->date)->get();
         return $doctors;
+    }
+
+    public function medicamentRecommendations($medicament)
+    {
+        $data = [];
+
+        $medicamentBasedOnTitle = Medicament::where('nom', 'LIKE', '%' . $medicament->nom . '%')
+            ->where('id', '!=', $medicament->id)
+            ->limit(6);
+        array_push($data, $medicamentBasedOnTitle);
+
+        $medicamentBasedOnStatus = Medicament::where('status', 'LIKE', '%' . $medicament->status . '%')
+            ->where('id', '!=', $medicament->id)
+            ->limit(6);
+        array_push($data, $medicamentBasedOnStatus);
+
+        $medicamentBasedOnPresentation = Medicament::where('presentation', 'LIKE', '%' . $medicament->presentation . '%')
+            ->where('id', '!=', $medicament->id)
+            ->limit(6);
+        array_push($data, $medicamentBasedOnPresentation);
+
+        $collection  = collect($data);
+        $unique = $collection->unique("id");
+        $medicamentRecommendations =  $unique->values()->first();
+        return $medicamentRecommendations;
+    }
+
+    public function medecin()
+    {
+        return view('medecin.index');
+    }
+
+    public function allMedicaments(Request $request)
+    {
+        // Page Accueil - Search
+        $search = $request->get('search');
+        if ($search) {
+            $medicaments = Medicament::where('nom', 'LIKE', '%' . $search . '%')
+                ->orWhere('status', 'LIKE', '%' . $search . '%')
+                ->paginate(20);
+
+            return view('medicaments.allmedicaments', compact('medicaments'));
+        }
+        $keyword = $request->get('nom');
+        $status = $request->get('status');
+        $category = $request->get('categorie_id');
+        if ($keyword || $status) {
+            $medicaments = Medicament::where('nom', 'LIKE', '%' . $keyword . '%')
+                ->orWhere('status', $status)
+                ->paginate(20);
+            return view('medicaments.allmedicaments', compact('medicaments'));
+        } else {
+            $medicaments = Medicament::latest()->paginate(20);
+            return view('medicaments.allmedicaments', compact('medicaments'));
+        }
+    }
+    public function searchMedicaments(Request $request)
+    {
+        $keyword = $request->get('keyword');
+        $users = Medicament::where('nom', 'like', '%' . $keyword . '%')
+            ->limit(5)->get();
+        return response()->json($users);
     }
 }

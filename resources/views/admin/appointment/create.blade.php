@@ -36,7 +36,6 @@
         @foreach ($errors->all() as $error)
             <div class="alert alert-danger">
                 {{ $error }}
-
             </div>
         @endforeach
 
@@ -115,7 +114,7 @@
 
             <div class="card">
                 <div class="card-header">
-                    Choose PM time
+                    Horraire du Soir
                 </div>
                 <div class="card-body">
 
@@ -192,7 +191,7 @@
             </div>
             <div class="card">
                 <div class="card-body">
-                    <button type="submit" class="btn btn-primary">Submit</button>
+                    <button type="submit" class="btn btn-primary"><i class="ik ik-save"></i> Valider</button>
                 </div>
             </div>
         </form>
@@ -202,7 +201,6 @@
     <style type="text/css">
         input[type="checkbox"] {
             zoom: 1.1;
-
         }
 
         body {
