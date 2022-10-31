@@ -20,7 +20,7 @@
     </script>
     <!-- /// Google Analytics Code // -->
 
-    <title>medical</title>
+    <title>Complexe Médical</title>
     <link rel="icon" href="{{ asset('front/img/favicon.png') }}">
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="{{ asset('front/css/bootstrap.min.css') }}">
@@ -43,6 +43,8 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" />
 
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/fullcalendar@3.9.0/dist/fullcalendar.min.css" />
+
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 </head>
 
 <body>
@@ -63,44 +65,44 @@
                             id="navbarSupportedContent">
                             <ul class="navbar-nav align-items-center">
                                 <li class="nav-item active">
-                                    <a class="nav-link" href="index.html">Home</a>
+                                    <a class="nav-link" href="{{ route('accueil') }}">Accueil</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" href="about.html">about</a>
+                                    <a class="nav-link" href="about.html">A Propos</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" href="Doctor.html">Doctors</a>
-                                </li>
-
-                                <li class="nav-item dropdown">
-                                    <a class="nav-link dropdown-toggle" href="blog.html" id="navbarDropdown"
-                                        role="button" data-toggle="dropdown" aria-haspopup="true"
-                                        aria-expanded="false">
-                                        Pages
-                                    </a>
-                                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                        <a class="dropdown-item" href="services.html">services</a>
-                                        <a class="dropdown-item" href="elements.html">Elements</a>
-                                    </div>
-                                </li>
-                                <li class="nav-item dropdown">
-                                    <a class="nav-link dropdown-toggle" href="blog.html" id="navbarDropdown_1"
-                                        role="button" data-toggle="dropdown" aria-haspopup="true"
-                                        aria-expanded="false">
-                                        blog
-                                    </a>
-                                    <div class="dropdown-menu" aria-labelledby="navbarDropdown_1">
-                                        <a class="dropdown-item" href="blog.html">blog</a>
-                                        <a class="dropdown-item" href="single-blog.html">Single blog</a>
-                                    </div>
+                                    <a class="nav-link" href="/medecins">Médecins</a>
                                 </li>
 
                                 <li class="nav-item">
-                                    <a class="nav-link" href="{{ url('/register') }}">Espace Patients</a>
+                                    <a class="nav-link" href="/contact">Contactez-nous</a>
                                 </li>
-                                <li class="d-none d-lg-block">
-                                    <a class="btn_1" href="{{ url('/login') }}">Se Connecter</a>
-                                </li>
+
+                                @if (!Auth::check())
+                                    <li class="nav-item">
+                                        <a class="nav-link" href="{{ url('/register') }}">Espace Patients</a>
+                                    </li>
+                                    <li class="d-none d-lg-block">
+                                        <a class="btn_1" href="{{ url('/login') }}">Se Connecter</a>
+                                    </li>
+                                @else
+                                    <li class="d-none d-lg-block">
+                                        <a class="btn_1 btn-dark" href="{{ route('home') }}"><i class="fa fa-home"
+                                                aria-hidden="true"></i>DASHBOARD</a>
+                                    </li>
+                                    <li class="d-none d-lg-block">
+                                        <a class="btn_1 btn-white" href="{{ route('logout') }}"
+                                            onclick="event.preventDefault();
+                                                            document.getElementById('logout-form').submit();">
+                                            <i class="fa fa-sign-out" aria-hidden="true"></i>DÉCONNECTION
+                                        </a>
+
+                                        <form id="logout-form" action="{{ route('logout') }}" method="POST"
+                                            style="display: none;">
+                                            @csrf
+                                        </form>
+                                    </li>
+                                @endif
                             </ul>
                         </div>
                     </nav>

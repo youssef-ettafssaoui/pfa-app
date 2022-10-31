@@ -37,42 +37,9 @@ class FactureController extends Controller
      */
     public function store(Request $request)
     {
-        $data['patient_name'] = $request->patient_name;
-        $data['patient_email'] = $request->patient_email;
-        $data['patient_mobile'] = $request->patient_mobile;
-        $data['medecin_name'] = $request->medecin_name;
-        $data['facture_number'] = $request->facture_number;
-        $data['facture_date'] = $request->facture_date;
-        $data['sub_total'] = $request->sub_total;
-        $data['discount_type'] = $request->discount_type;
-        $data['discount_value'] = $request->discount_value;
-        $data['vat_value'] = $request->vat_value;
-        $data['shipping'] = $request->shipping;
-        $data['total_due'] = $request->total_due;
+        Facture::create($request->all());
 
-        $facture = Facture::create($data);
-
-        $details_list = [];
-        for ($i = 0; $i < count($request->objet); $i++) {
-            $details_list[$i]['objet'] = $request->objet[$i];
-            $details_list[$i]['nombre_personnes'] = $request->nombre_personnes[$i];
-            $details_list[$i]['prix_personne'] = $request->prix_personne[$i];
-            $details_list[$i]['row_sub_total'] = $request->row_sub_total[$i];
-        }
-
-        $details = $facture->details()->createMany($details_list);
-
-        if ($details) {
-            return redirect()->route('facture.index')->with([
-                'message' => 'Facture crée avec succès !',
-                'alert-type' => 'success'
-            ]);
-        } else {
-            return redirect()->back()->with([
-                'message' => 'Erreur ! Impossible de créer cette Facture !',
-                'alert-type' => 'danger'
-            ]);
-        }
+        return redirect()->route('facture.index')->with('message', 'Facture crée avec succès !');
     }
 
     /**
@@ -83,8 +50,8 @@ class FactureController extends Controller
      */
     public function show($id)
     {
-        $facture = Facture::findOrFail($id);
-        return view('facture.show', compact('facture'));
+        $facture = Facture::find($id);
+        return view('admin.facture.model', compact('facture'));
     }
 
     /**
@@ -95,8 +62,8 @@ class FactureController extends Controller
      */
     public function edit($id)
     {
-        $facture = Facture::findOrFail($id);
-        return view('facture.edit', compact('facture'));
+        $facture = Facture::find($id);
+        return view('admin.facture.edit', compact('facture'));
     }
 
     /**
@@ -108,46 +75,12 @@ class FactureController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $facture = Facture::whereId($id)->first();
-
-        $data['patient_name'] = $request->patient_name;
-        $data['patient_email'] = $request->patient_email;
-        $data['patient_mobile'] = $request->patient_mobile;
-        $data['medecin_name'] = $request->medecin_name;
-        $data['facture_number'] = $request->facture_number;
-        $data['facture_date'] = $request->facture_date;
-        $data['sub_total'] = $request->sub_total;
-        $data['discount_type'] = $request->discount_type;
-        $data['discount_value'] = $request->discount_value;
-        $data['vat_value'] = $request->vat_value;
-        $data['shipping'] = $request->shipping;
-        $data['total_due'] = $request->total_due;
-
+        $this->validateUpdate($request, $id);
+        $data = $request->all();
+        $facture = Facture::find($id);
         $facture->update($data);
 
-        $facture->details()->delete();
-
-        $details_list = [];
-        for ($i = 0; $i < count($request->objet); $i++) {
-            $details_list[$i]['objet'] = $request->objet[$i];
-            $details_list[$i]['nombre_personnes'] = $request->nombre_personnes[$i];
-            $details_list[$i]['prix_personne'] = $request->prix_personne[$i];
-            $details_list[$i]['row_sub_total'] = $request->row_sub_total[$i];
-        }
-
-        $details = $facture->details()->createMany($details_list);
-
-        if ($details) {
-            return redirect()->route('facture.index')->with([
-                'message' => 'Facture a été modifiée avec succès !',
-                'alert-type' => 'success'
-            ]);
-        } else {
-            return redirect()->back()->with([
-                'message' => 'Erreur ! Impossible de modifier cette Facture !',
-                'alert-type' => 'danger'
-            ]);
-        }
+        return redirect()->route('facture.index')->with('message', 'facture modifié avec succès !');
     }
 
     /**
@@ -158,24 +91,24 @@ class FactureController extends Controller
      */
     public function destroy($id)
     {
-        $facture = Facture::findOrFail($id);
-        if ($facture) {
-            $facture->delete();
-            return redirect()->route('facture.index')->with([
-                'message' => 'La Facture a été supprimé avec succès !',
-                'alert-type' => 'success'
-            ]);
-        } else {
-            return redirect()->route('facture.index')->with([
-                'message' => 'Erreur ! Impossible de supprimer la Facture',
-                'alert-type' => 'danger'
-            ]);
-        }
+        //
     }
 
-    public function print($id)
+    public function validateStore($request)
     {
-        $facture = Facture::findOrFail($id);
-        return view('facture.print', compact('facture'));
+        return  $this->validate($request, [
+            'date' => 'required',
+            'motif' => 'required',
+            'total' => 'required'
+        ]);
+    }
+
+    public function validateUpdate($request, $id)
+    {
+        return $this->validate($request, [
+            'date' => 'required',
+            'motif' => 'required',
+            'total' => 'required'
+        ]);
     }
 }

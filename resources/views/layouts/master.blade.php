@@ -1,7 +1,3 @@
 @include('layouts.header')
-<section class="banner_part">
-    <div class="container">
-        @yield('content')
-    </div>
-</section>
+@yield('content')
 @include('layouts.footer')

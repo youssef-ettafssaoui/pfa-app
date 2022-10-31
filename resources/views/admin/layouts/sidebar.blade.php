@@ -123,9 +123,8 @@
                                     Patients</span>
                                 <span class="badge badge-danger"></span></a>
                             <div class="submenu-content">
-                                <a href="{{ route('patient') }}" class="menu-item">Today Appointment</a>
-                                <a href="{{ route('all.appointments') }}" class="menu-item">All Time Appointment</a>
-
+                                <a href="{{ route('patient') }}" class="menu-item">Rendez-vous (Aujourd'hui)</a>
+                                <a href="{{ route('all.appointments') }}" class="menu-item">Tous rendez-vous</a>
                             </div>
                         </div>
                     @endif

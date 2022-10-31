@@ -153,4 +153,10 @@ class DoctorController extends Controller
 
         ]);
     }
+
+    public function medecin()
+    {
+        $medecins = User::where('role_id', '=', 1)->latest()->paginate(10);
+        return view('medecin.medecin', compact('medecins'));
+    }
 }

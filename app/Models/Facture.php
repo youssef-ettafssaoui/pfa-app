@@ -4,8 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-
-use App\Models\FactureDetails;
+use App\Models\User;
 
 class Facture extends Model
 {
@@ -13,13 +12,8 @@ class Facture extends Model
 
     protected $guarded = [];
 
-    public function details()
+    public function user()
     {
-        return $this->hasMany(FactureDetails::class, 'facture_id', 'id');
-    }
-
-    public function discountResult()
-    {
-        return $this->discount_type == 'fixed' ? $this->discount_value : $this->discount_value . '%';
+        return $this->belongsTo(User::class);
     }
 }

@@ -4,6 +4,7 @@ use App\Http\Controllers\AccueilController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\AnalyseController;
 use App\Http\Controllers\AppointmentController;
+use App\Http\Controllers\ContactController;
 use App\Http\Controllers\DepartmentController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
@@ -40,7 +41,12 @@ Route::get('/medicaments/{id}/{medicament}', [AccueilController::class, 'show'])
 
 Route::get('/medicaments/allmedicaments', [AccueilController::class, 'allmedicaments'])->name('allmedicaments');
 
-Route::get('/medecins', [AccueilController::class, 'medecin'])->name('medecin');
+Route::get('/medecins', [DoctorController::class, 'medecin'])->name('medecin');
+
+
+Route::get('/contact', [ContactController::class, 'index'])->name('contact');
+
+Route::post('/contact', [ContactController::class, 'send_mail'])->name('addContact');
 
 Route::group(['middleware' => ['auth', 'admin']], function () {
     Route::resource('doctor', DoctorController::class);
