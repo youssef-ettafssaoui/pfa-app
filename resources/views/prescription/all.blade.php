@@ -53,7 +53,7 @@
                                             <!-- Button trigger modal -->
 
                                             <a href="{{ route('prescription.show', [$patient->user_id, $patient->date]) }}"
-                                                class="btn btn-secondary">View prescription</a>
+                                                class="btn btn-secondary">Voir l'ordonnance</a>
 
                                         </td>
                                     </tr>

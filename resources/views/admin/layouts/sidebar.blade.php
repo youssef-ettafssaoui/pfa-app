@@ -142,6 +142,19 @@
                         </div>
                     @endif
 
+                    @if (auth()->check() && auth()->user()->role->name === 'admin')
+                        <div class="nav-item has-sub">
+                            <a href="javascript:void(0)"><i class="ik ik-folder"></i><span>Publications
+                                </span>
+                                <span class="badge badge-danger"></span></a>
+                            <div class="submenu-content">
+                                <a href="/admin/posts" class="menu-item">Consulter</a>
+                                <a href="/admin/create" class="menu-item">Créer Publication</a>
+                                <a href="/admin/trash" class="menu-item">Corbeil</a>
+                            </div>
+                        </div>
+                    @endif
+
                     <div class="nav-item active">
                         <a href="{{ route('accueil') }}"><i class="ik ik-home"></i><span>Accueil</span></a>
                     </div>

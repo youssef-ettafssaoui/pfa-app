@@ -4,7 +4,7 @@
     <div class="container">
         <div class="row align-items-center justify-content-center">
             <div class="col-md-7 py-5">
-                <h3>Création du Compte :</h3>
+                <h3>Se Connecter</h3>
                 <p>Lorem ipsum dolor sit amet elit. Sapiente sit aut eos consectetur adipisicing.</p>
                 <form method="POST" action="{{ route('login') }}">
                     @csrf

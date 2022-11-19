@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AccueilController;
+use App\Http\Controllers\AdminController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\AnalyseController;
 use App\Http\Controllers\AppointmentController;
@@ -58,6 +59,27 @@ Route::group(['middleware' => ['auth', 'admin']], function () {
     Route::resource('department', DepartmentController::class);
     Route::resource('medicament', MedicamentsController::class);
     Route::resource('analyses', AnalyseController::class);
+
+
+    Route::get('/admin/posts', [AdminController::class, 'index']);
+
+    Route::get('/admin/create', [AdminController::class, 'create']);
+
+    Route::post('/admin/create', [AdminController::class, 'store'])->name('post.store');
+
+    Route::post('/admin/destroy', [AdminController::class, 'destroy'])->name('post.delete');
+
+    Route::get('/admin/{id}/edit', [AdminController::class, 'edit'])->name('post.edit');
+
+    Route::post('/admin/{id}/update', [AdminController::class, 'update'])->name('post.update');
+
+    Route::get('/admin/trash', [AdminController::class, 'trash']);
+
+    Route::get('/admin/{id}/trash', [AdminController::class, 'restore'])->name('post.restore');
+
+    Route::get('/admin/{id}/toggle', [AdminController::class, 'toggle'])->name('post.toggle');
+
+    Route::get('/posts/{id}/{slug}', [AdminController::class, 'show'])->name('post.show');
 
     // Admin Site Setting Routes :
     Route::get('/site', [SiteSettingController::class, 'SiteSetting'])->name('site.setting');

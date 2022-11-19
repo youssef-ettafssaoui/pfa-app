@@ -18,22 +18,22 @@
                         <input type="hidden" name="date" value="{{ $booking->date }}">
 
                         <div class="form-group">
-                            <label>Disease</label>
+                            <label>Maladie</label>
                             <input type="text" name="name_of_disease" class="form-control" required="">
                         </div>
                         <div class="form-group">
-                            <label>Symptoms</label>
+                            <label>Les symptômes</label>
 
                             <textarea name="symptoms" class="form-control" placeholder="symptoms" required=""></textarea>
                         </div>
 
                         <div class="form-group">
-                            <label>Medicine</label>
+                            <label>Médicaments</label>
                             <add-btn></add-btn>
 
                         </div>
                         <div class="form-group">
-                            <label>Procedure to use medicine</label>
+                            <label>Procédure d'utilisation des médicaments</label>
                             <textarea name="procedure_to_use_medicine" class="form-control" placeholder="Procedure to use medicine" required=""></textarea>
                         </div>
                         <div class="form-group">
@@ -51,8 +51,8 @@
 
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                        <button type="submit" class="btn btn-primary">Save changes</button>
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Fermer</button>
+                        <button type="submit" class="btn btn-primary">Sauvegarder les modifications</button>
                     </div>
                 </div>
             </form>

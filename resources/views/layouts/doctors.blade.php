@@ -1,42 +1,40 @@
-<!--::doctor_part start::-->
-<section class="doctor_part section_padding">
-    <div class="container">
-        <div class="row justify-content-center">
-            <div class="col-xl-8">
-                <div class="section_tittle text-center">
-                    <h2>Médecins expérimentés</h2>
-                    <p>Face replenish sea good winged bearing years air divide wasHave night male also</p>
-                </div>
-            </div>
-        </div>
-        <div class="row">
-            @foreach ($medecins as $medecin)
-                <div class="col-sm-6 col-lg-3">
-                    <div class="single_blog_item">
-                        <div class="single_blog_img">
-                            @if (!empty($medecin->image))
-                                <img src="{{ asset('images') }}/{{ $medecin->image }}" alt="Image"
-                                    class="img-fluid mx-auto">
-                            @else
-                                <img src="{{ asset('front/img/doctor/doctor_1.png') }}" alt="doctor">
-                            @endif
-                            <div class="social_icon">
-                                <a href="#"> <i class="ti-facebook"></i> </a>
-                                <a href="#"> <i class="ti-twitter-alt"></i> </a>
-                                <a href="#"> <i class="ti-instagram"></i> </a>
-                                <a href="#"> <i class="ti-skype"></i> </a>
-                            </div>
-                        </div>
-                        <div class="single_text">
-                            <div class="single_blog_text">
-                                <h3>DR {{ $medecin->name }}</h3>
-                                <p>{{ $medecin->department }}</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            @endforeach
-        </div>
-    </div>
-</section>
-<!--::doctor_part end::-->
+     <!-- ======= Team Section ======= -->
+     <section id="team" class="team">
+
+         <div class="container" data-aos="fade-up">
+
+             <header class="section-header">
+                 <h2>Rencontrez Notre Équipe</h2>
+                 <p>Médecins Spécialistes</p>
+             </header>
+
+             <div class="row gy-4">
+                 @foreach ($medecins as $medecin)
+                     <div class="col-lg-3 col-md-6 d-flex align-items-stretch" data-aos="fade-up" data-aos-delay="100">
+                         <div class="member">
+                             <div class="member-img">
+                                 @if (!empty($medecin->image))
+                                     <img src="{{ asset('images') }}/{{ $medecin->image }}" alt="Image"
+                                         class="img-fluid mx-auto">
+                                 @else
+                                     <img src="{{ asset('front/img/doctor/doctor_1.png') }}" alt="doctor">
+                                 @endif
+                                 <div class="social">
+                                     <a href=""><i class="bi bi-twitter"></i></a>
+                                     <a href=""><i class="bi bi-facebook"></i></a>
+                                     <a href=""><i class="bi bi-instagram"></i></a>
+                                     <a href=""><i class="bi bi-linkedin"></i></a>
+                                 </div>
+                             </div>
+                             <div class="member-info">
+                                 <h4>Dr. {{ $medecin->name }}</h4>
+                                 <span>{{ $medecin->department }}</span>
+                             </div>
+                         </div>
+                     </div>
+                 @endforeach
+             </div>
+
+         </div>
+
+     </section><!-- End Team Section -->

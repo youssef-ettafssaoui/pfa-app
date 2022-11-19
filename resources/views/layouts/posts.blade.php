@@ -1,47 +1,46 @@
-@php
-    $setting = App\Models\SiteSetting::find(1);
-@endphp
-<!--::blog_part start::-->
-<section class="blog_part section_padding">
-    <div class="container">
-        <div class="row justify-content-center">
-            <div class="col-xl-8">
-                <div class="section_tittle text-center">
-                    <h2>Mise à jour du blog</h2>
-                    <p>Notre Blog est géré par les administrateur de notre Applications</p>
-                </div>
-            </div>
-        </div>
-        <div class="row">
-            @if ($posts->count() > 0)
-                @foreach ($posts as $post)
-                    <div class="col-sm-6 col-lg-4 col-xl-4">
-                        <div class="single-home-blog">
-                            <div class="card">
-                                <a href="{{ route('post.show', [$post->id, $post->slug]) }}" class="image-play">
-                                    <img src="{{ asset('storage/' . $post->image) }}" alt=""
-                                        class="card-img-top">
-                                </a>
-                                <div class="card-body">
-                                    <ul>
-                                        <li> <span class="ti-user"></span>Administrateur</li>
-                                        <li> <span class="ti-bookmark"></span></li>
-                                    </ul>
-                                    <a href="blog.html">
-                                        <h5 class="card-title">{{ str_limit($post->content, 50) }}</h5>
-                                    </a>
-                                    <a href="{{ route('post.show', [$post->id, $post->slug]) }}" class="blog_btn">Plus
-                                        d'info</a>
+     <!-- ======= Recent Blog Posts Section ======= -->
+     <section id="recent-blog-posts" class="recent-blog-posts">
 
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                @endforeach
-            @else
-                <h4 class="text-danger text-center">Pas d'article pour ce moment</h4>
-            @endif
-        </div>
-    </div>
-</section>
-<!--::blog_part end::-->
+         <div class="container" data-aos="fade-up">
+
+             <header class="section-header">
+                 <h2>publications</h2>
+                 <p>Nos Dernières Nouvelles</p>
+             </header>
+
+             <div class="row">
+                 @if ($posts->count() > 0)
+                     @foreach ($posts as $post)
+                         <div class="col-lg-4">
+                             <div class="post-box">
+                                 <div class="post-img">
+                                     @if (!empty($post->image))
+                                         <img src="{{ asset('images') }}/{{ $post->image }}" alt="Image"
+                                             class="img-fluid mx-auto">
+                                     @else
+                                         <img src="{{ asset('front/assets/img/blog.png') }}" class="img-fluid"
+                                             alt="">
+                                     @endif
+
+                                 </div>
+                                 <span class="post-date">{{ $post->created_at->diffForHumans() }}</span>
+                                 <h3 class="post-title">{{ $post->title }}
+                                 </h3>
+                                 <p>{{ str_limit($post->content, 50) }}</p>
+                                 <a href="{{ route('post.show', [$post->id, $post->slug]) }}"
+                                     class="readmore stretched-link mt-auto"><span>Plus d'infos</span><i
+                                         class="bi bi-arrow-right"></i></a>
+                             </div>
+                         </div>
+                     @endforeach
+                 @else
+                     <h2 class="text-danger
+                                     text-center">Pas d'article pour ce
+                         moment</h2>
+                 @endif
+
+             </div>
+
+         </div>
+
+     </section><!-- End Recent Blog Posts Section -->

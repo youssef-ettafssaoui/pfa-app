@@ -11,15 +11,15 @@
                     </div>
 
                     <div class="card-body">
-                        <p>Date:{{ $prescription->date }}</p>
-                        <p>Patient:{{ $prescription->user->name }}</p>
-                        <p>Doctor:{{ $prescription->doctor->name }}</p>
-                        <p>Disease:{{ $prescription->name_of_disease }}</p>
-                        <p>Symptoms:{{ $prescription->symptoms }}</p>
-                        <p>Medicine:{{ $prescription->medicine }}</p>
-                        <p>Proedure to use medicine:{{ $prescription->procedure_to_use_medicine }}</p>
-                        <p>Feedback:{{ $prescription->feedback }}</p>
-                        <p>Doctor signature:{{ $prescription->signature }}</p>
+                        <p>Date : {{ $prescription->date }}</p>
+                        <p>Patient : {{ $prescription->user->name }}</p>
+                        <p>Médecin : {{ $prescription->doctor->name }}</p>
+                        <p>Maladie : {{ $prescription->name_of_disease }}</p>
+                        <p>Les symptômes : {{ $prescription->symptoms }}</p>
+                        <p>Médicaments : {{ $prescription->medicine }}</p>
+                        <p>Procédure d'utilisation des médicaments : {{ $prescription->procedure_to_use_medicine }}</p>
+                        <p>Feedback : {{ $prescription->feedback }}</p>
+                        <p>Signature du Médecin : {{ $prescription->signature }}</p>
 
 
                     </div>

@@ -1,4 +1,4 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 @php
     $seo = App\Models\Seo::find(1);
@@ -7,107 +7,92 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="{{ $seo->meta_description }}">
-    <meta name="csrf-token" content="{{ csrf_token() }}">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
+    <title>FlexStart Bootstrap Template - Index</title>
+    <meta name="description" content="{{ $seo->meta_description }}">
     <meta name="author" content="{{ $seo->meta_author }}">
     <meta name="keywords" content="{{ $seo->meta_keyword }}">
 
-    <!-- /// Google Analytics Code // -->
-    <script>
-        {{ $seo->google_analytics }}
-    </script>
-    <!-- /// Google Analytics Code // -->
+    <!-- Favicons -->
+    <link href="{{ asset('front/assets/img/favicon.png') }}" rel="icon">
+    <link href="{{ asset('front/assets/img/apple-touch-icon.png') }}" rel="apple-touch-icon">
 
-    <title>Complexe Médical</title>
-    <link rel="icon" href="{{ asset('front/img/favicon.png') }}">
-    <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="{{ asset('front/css/bootstrap.min.css') }}">
-    <!-- animate CSS -->
-    <link rel="stylesheet" href="{{ asset('front/css/animate.css') }}">
-    <!-- owl carousel CSS -->
-    <link rel="stylesheet" href="{{ asset('front/css/owl.carousel.min.css') }}">
-    <!-- themify CSS -->
-    <link rel="stylesheet" href="{{ asset('front/css/themify-icons.css') }}">
-    <!-- flaticon CSS -->
-    <link rel="stylesheet" href="{{ asset('front/css/flaticon.css') }}">
-    <!-- magnific popup CSS -->
-    <link rel="stylesheet" href="{{ asset('front/css/magnific-popup.css') }}">
-    <!-- nice select CSS -->
-    <link rel="stylesheet" href="{{ asset('front/css/nice-select.css') }}">
-    <!-- swiper CSS -->
-    <link rel="stylesheet" href="{{ asset('front/css/slick.css') }}">
-    <!-- style CSS -->
-    <link rel="stylesheet" href="{{ asset('front/css/style.css') }}">
+    <!-- Google Fonts -->
+    <link
+        href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Nunito:300,300i,400,400i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i"
+        rel="stylesheet">
+
+    <!-- Vendor CSS Files -->
+    <link href="{{ asset('front/assets/vendor/aos/aos.css') }}" rel="stylesheet">
+    <link href="{{ asset('front/assets/vendor/bootstrap/css/bootstrap.min.css') }}" rel="stylesheet">
+    <link href="{{ asset('front/assets/vendor/bootstrap-icons/bootstrap-icons.css') }}" rel="stylesheet">
+    <link href="{{ asset('front/assets/vendor/glightbox/css/glightbox.min.css') }}" rel="stylesheet">
+    <link href="{{ asset('front/assets/vendor/remixicon/remixicon.css') }}" rel="stylesheet">
+    <link href="{{ asset('front/assets/vendor/swiper/swiper-bundle.min.css') }}" rel="stylesheet">
+
+    <!-- Template Main CSS File -->
+    <link href="{{ asset('front/assets/css/style.css') }}" rel="stylesheet">
+
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" />
 
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/fullcalendar@3.9.0/dist/fullcalendar.min.css" />
 
     <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+
+    <link rel="stylesheet" href="{{ mix('css/app.css') }}" />
+
 </head>
 
+<style>
+    a {
+        text-decoration: none;
+    }
+
+    a:hover {
+        text-decoration: none;
+    }
+</style>
+
 <body>
-    <!--::header part start::-->
-    <header class="main_menu home_menu">
-        <div class="container">
-            <div class="row align-items-center">
-                <div class="col-lg-12">
-                    <nav class="navbar navbar-expand-lg navbar-light">
-                        <a href="{{ route('accueil') }}"> <img src="{{ asset($setting->logo) }}" alt="logo"> </a>
-                        <button class="navbar-toggler" type="button" data-toggle="collapse"
-                            data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
-                            aria-expanded="false" aria-label="Toggle navigation">
-                            <span class="navbar-toggler-icon"></span>
-                        </button>
 
-                        <div class="collapse navbar-collapse main-menu-item justify-content-end"
-                            id="navbarSupportedContent">
-                            <ul class="navbar-nav align-items-center">
-                                <li class="nav-item active">
-                                    <a class="nav-link" href="{{ route('accueil') }}">Accueil</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link" href="about.html">A Propos</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link" href="/medecins">Médecins</a>
-                                </li>
+    <!-- ======= Header ======= -->
+    <header id="header" class="header fixed-top">
+        <div class="container-fluid container-xl d-flex align-items-center justify-content-between">
 
-                                <li class="nav-item">
-                                    <a class="nav-link" href="/contact">Contactez-nous</a>
-                                </li>
+            <a href="{{ route('accueil') }}" class="logo d-flex align-items-center">
+                <img src="{{ asset($setting->logo) }}" alt="logo">
+                <span>{{ $setting->hopital_name }}</span>
+            </a>
 
-                                @if (!Auth::check())
-                                    <li class="nav-item">
-                                        <a class="nav-link" href="{{ url('/register') }}">Espace Patients</a>
-                                    </li>
-                                    <li class="d-none d-lg-block">
-                                        <a class="btn_1" href="{{ url('/login') }}">Se Connecter</a>
-                                    </li>
-                                @else
-                                    <li class="d-none d-lg-block">
-                                        <a class="btn_1 btn-dark" href="{{ route('home') }}"><i class="fa fa-home"
-                                                aria-hidden="true"></i>DASHBOARD</a>
-                                    </li>
-                                    <li class="d-none d-lg-block">
-                                        <a class="btn_1 btn-white" href="{{ route('logout') }}"
-                                            onclick="event.preventDefault();
-                                                            document.getElementById('logout-form').submit();">
-                                            <i class="fa fa-sign-out" aria-hidden="true"></i>DÉCONNECTION
-                                        </a>
+            <nav id="navbar" class="navbar">
+                <ul>
+                    <li><a class="nav-link scrollto active" href="#hero">Home</a></li>
+                    <li><a class="nav-link scrollto" href="#services">Services</a></li>
+                    <li><a class="nav-link scrollto" href="#team">Médecins</a></li>
+                    <li><a class="nav-link scrollto" href="#contact">Contact</a></li>
+                    @if (!Auth::check())
+                        <li><a href="{{ url('/register') }}">Espace Patients</a></li>
+                        <li><a class="getstarted scrollto" href="{{ url('/login') }}">Se connecter</a></li>
+                    @else
+                        <li>
+                            <a class="nav-link scrollto" href="{{ route('home') }}">Dashboard</a>
+                        </li>
+                        <li>
+                            <a class="getstarted scrollto" href="{{ route('logout') }}"
+                                onclick="event.preventDefault();
+                                document.getElementById('logout-form').submit();">Déconnexxion
+                            </a>
 
-                                        <form id="logout-form" action="{{ route('logout') }}" method="POST"
-                                            style="display: none;">
-                                            @csrf
-                                        </form>
-                                    </li>
-                                @endif
-                            </ul>
-                        </div>
-                    </nav>
-                </div>
-            </div>
+                            <form id="logout-form" action="{{ route('logout') }}" method="POST"
+                                style="display: none;">
+                                @csrf
+                            </form>
+                        </li>
+                    @endif
+                </ul>
+                <i class="bi bi-list mobile-nav-toggle"></i>
+            </nav><!-- .navbar -->
+
         </div>
-    </header>
-    <!-- Header part end-->
+    </header><!-- End Header -->
