@@ -106,9 +106,16 @@
 
                     @if (auth()->check() && auth()->user()->role->name === 'patient')
                         <div class="nav-item">
+                            <a href="{{ url('user-profile') }}"><i class="ik ik-user"></i><span>Profile</span></a>
+                        </div>
+                    @endif
+
+                    @if (auth()->check() && auth()->user()->role->name === 'patient')
+                        <div class="nav-item">
                             <a href="{{ route('my.booking') }}"><i class="ik ik-calendar"></i><span>Booking</span></a>
                         </div>
                     @endif
+
                     @if (auth()->check() && auth()->user()->role->name === 'patient')
                         <div class="nav-item">
                             <a href="{{ route('my.prescription') }}"><i

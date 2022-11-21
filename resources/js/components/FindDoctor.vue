@@ -1,6 +1,9 @@
 <template>
     <div>
         <div class="card">
+            <div class="card-header bg-primary font-weight-bold text-white">
+                Trouver votre Médecin
+            </div>
             <div class="card-body">
                 <datepicker
                     class="my-datepicker"
@@ -12,52 +15,66 @@
                 ></datepicker>
             </div>
 
-            <table class="table">
-                <thead>
-                    <tr>
-                        <th>#</th>
-                        <th>Photo</th>
-                        <th>Nom Complet</th>
-                        <th>Compétence</th>
-                        <th>Booking</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr v-for="(d, index) in doctors" v-if="!loading">
-                        <th scope="row">{{ index + 1 }}</th>
-                        <td>
-                            <img
-                                :src="'/images/' + d.doctor.image"
-                                width="80"
-                            />
-                        </td>
-                        <td>{{ d.doctor.name }}</td>
-                        <td>{{ d.doctor.department }}</td>
-                        <td>
-                            <a
-                                :href="
-                                    '/new-appointment/' +
-                                    d.user_id +
-                                    '/' +
-                                    d.date
-                                "
-                                ><button class="btn btn-success">
-                                    Book Appointment
-                                </button></a
+            <div class="card mt-5">
+                <div class="card-header bg-primary font-weight-bold text-white">
+                    Médecins
+                </div>
+                <div class="card-body">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>#</th>
+                                <th>Photo</th>
+                                <th>Nom</th>
+                                <th>Spécialité</th>
+                                <th>Booking</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr
+                                v-for="(d, index) in doctors"
+                                :key="d.id"
+                                v-if="!loading"
                             >
-                        </td>
-                    </tr>
-                    <td v-if="doctors.length == 0">
-                        Aucun médecin disponible pour {{ this.time }}
-                    </td>
-                </tbody>
-            </table>
-            <div class="text-center">
-                <pulse-loader
-                    :loading="loading"
-                    :color="color"
-                    :size="size"
-                ></pulse-loader>
+                                <th scope="row">{{ index + 1 }}</th>
+                                <td>
+                                    <img
+                                        :src="'/images/' + d.doctor.image"
+                                        width="50"
+                                    />
+                                </td>
+                                <td>Dr. {{ d.doctor.name }}</td>
+                                <td>{{ d.doctor.department }}</td>
+                                <td>
+                                    <a
+                                        :href="
+                                            '/new-appointment/' +
+                                            d.user_id +
+                                            '/' +
+                                            d.date
+                                        "
+                                        ><button class="btn btn-primary btn-sm">
+                                            Prendre rendez-vous
+                                        </button></a
+                                    >
+                                </td>
+                            </tr>
+                            <td
+                                class="text-danger font-weight-bold"
+                                v-if="doctors.length == 0"
+                            >
+                                Aucun médecin disponible pour {{ this.time }}
+                            </td>
+                        </tbody>
+                    </table>
+                    <div class="text-center">
+                        <pulse-loader
+                            :loading="loading"
+                            :color="color"
+                            :size="size"
+                        ></pulse-loader>
+                    </div>
+                </div>
             </div>
         </div>
     </div>

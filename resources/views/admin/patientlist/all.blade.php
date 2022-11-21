@@ -10,7 +10,7 @@
                     </div>
 
                     <div class="card-body">
-                        <table class="table table-striped">
+                        <table class="table">
                             <thead>
                                 <tr>
                                     <th scope="col">#</th>

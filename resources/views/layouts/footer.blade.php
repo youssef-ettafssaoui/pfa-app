@@ -8,12 +8,13 @@
         <div class="container">
             <div class="row justify-content-center">
                 <div class="col-lg-12 text-center">
-                    <h4>Our Newsletter</h4>
-                    <p>Tamen quem nulla quae legam multos aute sint culpa legam noster magna</p>
+                    <h4>Newsletter</h4>
+                    <p>Connectez-vous et ne manquez rien </p>
                 </div>
                 <div class="col-lg-6">
                     <form action="" method="post">
-                        <input type="email" name="email"><input type="submit" value="Subscribe">
+                        <input type="email" placeholder="Entrer votre email" name="email"><input type="submit"
+                            value="S'abonner">
                     </form>
                 </div>
             </div>
@@ -25,11 +26,14 @@
             <div class="row gy-4">
                 <div class="col-lg-5 col-md-12 footer-info">
                     <a href="index.html" class="logo d-flex align-items-center">
-                        <img src="assets/img/logo.png" alt="">
-                        <span>FlexStart</span>
+                        <img src="{{ asset($setting->logo) }}" alt="logo">
+                        <span>{{ $setting->hopital_name }}</span>
                     </a>
-                    <p>Cras fermentum odio eu feugiat lide par naso tierra. Justo eget nada terra videa magna derita
-                        valies darta donna mare fermentum iaculis eu non diam phasellus.</p>
+                    <p> {{ $setting->hopital_name }} est un complexe multidisciplinair bâtit conformément aux normes
+                        hospitalières les plus strictes.</p>
+
+                    <p> {{ $setting->hopital_name }} se distingue par un service sur mesure et des prestations de haute
+                        qualité dédiées aux patients.</p>
                     <div class="social-links mt-3">
                         <a href="#" class="twitter"><i class="bi bi-twitter"></i></a>
                         <a href="#" class="facebook"><i class="bi bi-facebook"></i></a>
@@ -38,36 +42,25 @@
                     </div>
                 </div>
 
-                <div class="col-lg-2 col-6 footer-links">
-                    <h4>Useful Links</h4>
+                <div class="col-lg-4 col-6 footer-links">
+                    <h4>Liens Rapides</h4>
                     <ul>
-                        <li><i class="bi bi-chevron-right"></i> <a href="#">Home</a></li>
-                        <li><i class="bi bi-chevron-right"></i> <a href="#">About us</a></li>
-                        <li><i class="bi bi-chevron-right"></i> <a href="#">Services</a></li>
-                        <li><i class="bi bi-chevron-right"></i> <a href="#">Terms of service</a></li>
-                        <li><i class="bi bi-chevron-right"></i> <a href="#">Privacy policy</a></li>
+                        <li><i class="bi bi-chevron-right"></i> <a href="#hero">Home</a></li>
+                        <li><i class="bi bi-chevron-right"></i> <a href="#services">Services</a></li>
+                        <li><i class="bi bi-chevron-right"></i> <a href="#team">Médecins</a></li>
                     </ul>
                 </div>
 
-                <div class="col-lg-2 col-6 footer-links">
-                    <h4>Our Services</h4>
-                    <ul>
-                        <li><i class="bi bi-chevron-right"></i> <a href="#">Web Design</a></li>
-                        <li><i class="bi bi-chevron-right"></i> <a href="#">Web Development</a></li>
-                        <li><i class="bi bi-chevron-right"></i> <a href="#">Product Management</a></li>
-                        <li><i class="bi bi-chevron-right"></i> <a href="#">Marketing</a></li>
-                        <li><i class="bi bi-chevron-right"></i> <a href="#">Graphic Design</a></li>
-                    </ul>
-                </div>
+
 
                 <div class="col-lg-3 col-md-12 footer-contact text-center text-md-start">
-                    <h4>Contact Us</h4>
+                    <h4>Contactez-nous</h4>
                     <p>
-                        A108 Adam Street <br>
-                        New York, NY 535022<br>
-                        United States <br><br>
-                        <strong>Phone:</strong> +1 5589 55488 55<br>
-                        <strong>Email:</strong> info@example.com<br>
+                        {{ $setting->hopital_name }} <br>
+                        {{ $setting->hopital_address }}<br>
+                        <br>
+                        <strong>Phone :</strong> {{ $setting->phone_one }}<br>
+                        <strong>Email :</strong> {{ $setting->email }}<br>
                     </p>
 
                 </div>
@@ -89,6 +82,29 @@
 <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i
         class="bi bi-arrow-up-short"></i></a>
 
+<script src="https://cdn.jsdelivr.net/npm/moment@2.27.0/moment.min.js"></script>
+
+<script src="https://cdn.jsdelivr.net/npm/fullcalendar@3.9.0/dist/fullcalendar.min.js"></script>
+
+<script src="https://code.jquery.com/jquery-3.5.1.min.js"
+    integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
+
+<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js" defer></script>
+
+<script>
+    var dateToday = new Date();
+    $(function() {
+        $("#datepicker").datepicker({
+            dateFormat: "yy-mm-dd",
+            showButtonPanel: true,
+            numberOfMonths: 2,
+            minDate: dateToday,
+        });
+    });
+</script>
+
 <!-- Vendor JS Files -->
 <script src="{{ asset('front/assets/vendor/purecounter/purecounter_vanilla.js') }}"></script>
 <script src="{{ asset('front/assets/vendor/aos/aos.js') }}"></script>
@@ -100,6 +116,7 @@
 
 <!-- Template Main JS File -->
 <script src="{{ asset('front/assets/js/main.js') }}"></script>
+<script defer src="{{ mix('js/app.js') }}"></script>
 
 </body>
 

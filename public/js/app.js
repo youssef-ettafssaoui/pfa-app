@@ -17246,7 +17246,7 @@ __webpack_require__.r(__webpack_exports__);
   methods: {
     add: function add() {
       this.inputs.push({
-        medicine: ''
+        medicine: ""
       });
     },
     remove: function remove(index) {
@@ -17418,16 +17418,14 @@ var render = function render() {
         type: "text",
         name: "medicine[]"
       }
-    }), _vm._v(" "), _c("span", [_c("a", {
+    }), _vm._v(" "), _c("br"), _vm._v(" "), _c("span", [_c("a", {
       directives: [{
         name: "show",
         rawName: "v-show",
         value: index == _vm.inputs.length - 1,
-        expression: "index== inputs.length-1"
+        expression: "index == inputs.length - 1"
       }],
-      staticStyle: {
-        color: "green"
-      },
+      staticClass: "btn-success btn-sm",
       attrs: {
         href: ""
       },
@@ -17437,13 +17435,16 @@ var render = function render() {
           return _vm.add(index);
         }
       }
-    }, [_vm._v("Add More Medicine")]), _vm._v(" "), _c("a", {
+    }, [_c("i", {
+      staticClass: "ik ik-plus-circle"
+    })]), _vm._v(" "), _c("a", {
       directives: [{
         name: "show",
         rawName: "v-show",
         value: index || !index && _vm.inputs.length > 1,
-        expression: "index ||(!index &&inputs.length >1) "
+        expression: "index || (!index && inputs.length > 1)"
       }],
+      staticClass: "btn-danger btn-sm",
       attrs: {
         href: ""
       },
@@ -17453,7 +17454,9 @@ var render = function render() {
           return _vm.remove(index);
         }
       }
-    }, [_vm._v("Remove")])])]);
+    }, [_c("i", {
+      staticClass: "ik ik-minus-circle"
+    })])])]);
   }), 0);
 };
 
@@ -17559,6 +17562,8 @@ var render = function render() {
   return _c("div", [_c("div", {
     staticClass: "card"
   }, [_c("div", {
+    staticClass: "card-header bg-primary font-weight-bold text-white"
+  }, [_vm._v("\n            Trouver votre Médecin\n        ")]), _vm._v(" "), _c("div", {
     staticClass: "card-body"
   }, [_c("datepicker", {
     staticClass: "my-datepicker",
@@ -17575,26 +17580,36 @@ var render = function render() {
       },
       expression: "time"
     }
-  })], 1), _vm._v(" "), _c("table", {
+  })], 1), _vm._v(" "), _c("div", {
+    staticClass: "card mt-5"
+  }, [_c("div", {
+    staticClass: "card-header bg-primary font-weight-bold text-white"
+  }, [_vm._v("\n                Médecins\n            ")]), _vm._v(" "), _c("div", {
+    staticClass: "card-body"
+  }, [_c("table", {
     staticClass: "table"
   }, [_vm._m(0), _vm._v(" "), _c("tbody", [_vm._l(_vm.doctors, function (d, index) {
-    return !_vm.loading ? _c("tr", [_c("th", {
+    return !_vm.loading ? _c("tr", {
+      key: d.id
+    }, [_c("th", {
       attrs: {
         scope: "row"
       }
     }, [_vm._v(_vm._s(index + 1))]), _vm._v(" "), _c("td", [_c("img", {
       attrs: {
         src: "/images/" + d.doctor.image,
-        width: "80"
+        width: "50"
       }
-    })]), _vm._v(" "), _c("td", [_vm._v(_vm._s(d.doctor.name))]), _vm._v(" "), _c("td", [_vm._v(_vm._s(d.doctor.department))]), _vm._v(" "), _c("td", [_c("a", {
+    })]), _vm._v(" "), _c("td", [_vm._v("Dr. " + _vm._s(d.doctor.name))]), _vm._v(" "), _c("td", [_vm._v(_vm._s(d.doctor.department))]), _vm._v(" "), _c("td", [_c("a", {
       attrs: {
         href: "/new-appointment/" + d.user_id + "/" + d.date
       }
     }, [_c("button", {
-      staticClass: "btn btn-success"
-    }, [_vm._v("\n                                Book Appointment\n                            ")])])])]) : _vm._e();
-  }), _vm._v(" "), _vm.doctors.length == 0 ? _c("td", [_vm._v("\n                    Aucun médecin disponible pour " + _vm._s(this.time) + "\n                ")]) : _vm._e()], 2)]), _vm._v(" "), _c("div", {
+      staticClass: "btn btn-primary btn-sm"
+    }, [_vm._v("\n                                        Prendre rendez-vous\n                                    ")])])])]) : _vm._e();
+  }), _vm._v(" "), _vm.doctors.length == 0 ? _c("td", {
+    staticClass: "text-danger font-weight-bold"
+  }, [_vm._v("\n                            Aucun médecin disponible pour " + _vm._s(this.time) + "\n                        ")]) : _vm._e()], 2)]), _vm._v(" "), _c("div", {
     staticClass: "text-center"
   }, [_c("pulse-loader", {
     attrs: {
@@ -17602,14 +17617,14 @@ var render = function render() {
       color: _vm.color,
       size: _vm.size
     }
-  })], 1)])]);
+  })], 1)])])])]);
 };
 
 var staticRenderFns = [function () {
   var _vm = this,
       _c = _vm._self._c;
 
-  return _c("thead", [_c("tr", [_c("th", [_vm._v("#")]), _vm._v(" "), _c("th", [_vm._v("Photo")]), _vm._v(" "), _c("th", [_vm._v("Nom Complet")]), _vm._v(" "), _c("th", [_vm._v("Compétence")]), _vm._v(" "), _c("th", [_vm._v("Booking")])])]);
+  return _c("thead", [_c("tr", [_c("th", [_vm._v("#")]), _vm._v(" "), _c("th", [_vm._v("Photo")]), _vm._v(" "), _c("th", [_vm._v("Nom")]), _vm._v(" "), _c("th", [_vm._v("Spécialité")]), _vm._v(" "), _c("th", [_vm._v("Booking")])])]);
 }];
 render._withStripped = true;
 

@@ -14,7 +14,7 @@
                             Filtrer :
                             <div class="row">
                                 <div class="col-md-10">
-                                    <input type="text" class="form-control datetimepicker-input" id="datepicker"
+                                    <input type="date" class="form-control datetimepicker-input" id="datepicker"
                                         data-toggle="datetimepicker" data-target="#datepicker" name="date">
                                 </div>
                                 <div class="col-md-2">
@@ -27,10 +27,9 @@
                     </form>
 
                     <div class="card-body">
-                        <table class="table table-striped">
+                        <table class="table">
                             <thead>
                                 <tr>
-                                    <th scope="col">#</th>
                                     <th scope="col">Photo</th>
                                     <th scope="col">Date</th>
                                     <th scope="col">Patient</th>
@@ -44,16 +43,15 @@
                             <tbody>
                                 @forelse($bookings as $key=>$booking)
                                     <tr>
-                                        <th scope="row">{{ $key + 1 }}</th>
                                         <td><img src="/profile/{{ $booking->user->image }}" width="80"
                                                 style="border-radius: 50%;">
                                         </td>
-                                        <td>{{ $booking->date }}</td>
-                                        <td>{{ $booking->user->name }}</td>
+                                        <td class="text-danger font-weight-bold">{{ $booking->date }}</td>
+                                        <td class="text-primary font-weight-bold">{{ $booking->user->name }}</td>
                                         <td>{{ $booking->user->email }}</td>
                                         <td>{{ $booking->user->phone_number }}</td>
                                         <td>{{ $booking->time }}</td>
-                                        <td>{{ $booking->doctor->name }}</td>
+                                        <td class="text-primary font-weight-bold">Dr. {{ $booking->doctor->name }}</td>
                                         <td>
                                             @if ($booking->status == 0)
                                                 <a href="{{ route('update.status', [$booking->id]) }}"><button

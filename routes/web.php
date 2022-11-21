@@ -49,6 +49,12 @@ Route::get('/contact', [ContactController::class, 'index'])->name('contact');
 
 Route::post('/contact', [ContactController::class, 'send_mail'])->name('addContact');
 
+Route::get('/posts/{id}/{slug}', [AdminController::class, 'show'])->name('post.show');
+
+Route::get('/reservations', [AdminController::class, 'reservations'])->name('reserver');
+
+Route::get('/new-appointment/{doctorId}/{date}', [FrontendController::class, 'show'])->name('create.appointment');
+
 Route::group(['middleware' => ['auth', 'admin']], function () {
     Route::resource('doctor', DoctorController::class);
     Route::resource('facture', FactureController::class);
@@ -78,8 +84,6 @@ Route::group(['middleware' => ['auth', 'admin']], function () {
     Route::get('/admin/{id}/trash', [AdminController::class, 'restore'])->name('post.restore');
 
     Route::get('/admin/{id}/toggle', [AdminController::class, 'toggle'])->name('post.toggle');
-
-    Route::get('/posts/{id}/{slug}', [AdminController::class, 'show'])->name('post.show');
 
     // Admin Site Setting Routes :
     Route::get('/site', [SiteSettingController::class, 'SiteSetting'])->name('site.setting');

@@ -6,7 +6,7 @@
             <form action="{{ route('prescription') }}" method="post">@csrf
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel">Prescription</h5>
+                        <h5 class="modal-title" id="exampleModalLabel">Rédiger l'Ordonnance</h5>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
@@ -19,12 +19,13 @@
 
                         <div class="form-group">
                             <label>Maladie</label>
-                            <input type="text" name="name_of_disease" class="form-control" required="">
+                            <input type="text" name="name_of_disease" class="form-control"
+                                placeholder="Veuillez saisir la maladie du Patient" required="">
                         </div>
                         <div class="form-group">
                             <label>Les symptômes</label>
 
-                            <textarea name="symptoms" class="form-control" placeholder="symptoms" required=""></textarea>
+                            <textarea name="symptoms" class="form-control" placeholder="Veuillez saisir les symptômes" required=""></textarea>
                         </div>
 
                         <div class="form-group">
@@ -34,25 +35,28 @@
                         </div>
                         <div class="form-group">
                             <label>Procédure d'utilisation des médicaments</label>
-                            <textarea name="procedure_to_use_medicine" class="form-control" placeholder="Procedure to use medicine" required=""></textarea>
+                            <textarea name="procedure_to_use_medicine" class="form-control"
+                                placeholder="Veuillez saisir la Procédure d'utilisation des médicaments" required=""></textarea>
                         </div>
                         <div class="form-group">
                             <label>Feedback</label>
-
-                            <textarea name="feedback" class="form-control" placeholder="feedback" required=""></textarea>
+                            <textarea name="feedback" class="form-control" placeholder="Veuillez saisir votre Feedback" required=""></textarea>
 
 
                         </div>
                         <div class="form-group">
                             <label>Signature</label>
-                            <input type="text" name="signature" class="form-control" required="">
+                            <input type="text" name="signature" class="form-control"
+                                placeholder="Veuillez saisir votre Signature" required="">
                         </div>
 
 
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Fermer</button>
-                        <button type="submit" class="btn btn-primary">Sauvegarder les modifications</button>
+                        <button type="button" class="btn btn-danger" data-dismiss="modal"><i class="ik ik-close"></i>
+                            Fermer</button>
+                        <button type="submit" class="btn btn-primary"><i class="ik ik-save"></i> Sauvegarder les
+                            modifications</button>
                     </div>
                 </div>
             </form>

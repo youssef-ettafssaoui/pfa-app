@@ -23,7 +23,7 @@
                 </div>
             @endif
             <div class="card">
-                <div class="card-header">Mes Ordonnances ({{ $prescriptions->count() }})</div>
+                <div class="card-header bg-primary font-weight-bold">Mes Ordonnances ({{ $prescriptions->count() }})</div>
                 <div class="card-body">
                     <table class="table">
                         <thead>

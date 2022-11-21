@@ -5,9 +5,9 @@
             <div class="col-md-12">
                 <div class="card">
 
-                    <div class="card-header">
+                    <div class="card-header bg-primary font-weight-bold text-white">
 
-
+                        Ordonnance du Patient : {{ $prescription->user->name }}
                     </div>
 
                     <div class="card-body">

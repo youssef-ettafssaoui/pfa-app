@@ -14,13 +14,10 @@
                          <div class="col-lg-4">
                              <div class="post-box">
                                  <div class="post-img">
-                                     @if (!empty($post->image))
-                                         <img src="{{ asset('images') }}/{{ $post->image }}" alt="Image"
-                                             class="img-fluid mx-auto">
-                                     @else
-                                         <img src="{{ asset('front/assets/img/blog.png') }}" class="img-fluid"
-                                             alt="">
-                                     @endif
+
+                                     <img src="{{ asset('front/assets/img/blog.png') }}" class="img-fluid"
+                                         alt="">
+
 
                                  </div>
                                  <span class="post-date">{{ $post->created_at->diffForHumans() }}</span>

@@ -13,6 +13,11 @@ class AdminController extends Controller
         return view('admin.posts.index', compact('posts'));
     }
 
+    public function reservations()
+    {
+        return view('reservations.reserver');
+    }
+
     public function create()
     {
         return view('admin.posts.create');

@@ -8,7 +8,6 @@ use App\Models\Department;
 use App\Models\Medicament;
 use App\Models\Post;
 use App\Models\Prescription;
-use App\Models\Testimonial;
 use App\Models\Time;
 use App\Models\User;
 use Exception;
@@ -18,7 +17,7 @@ class FrontendController extends Controller
 {
     public function index()
     {
-        date_default_timezone_set('Australia/Melbourne');
+        date_default_timezone_set('Africa/Casablanca');
         if (request('date')) {
             $doctors = $this->findDoctorsBasedOnDate(request('date'));
             return view('welcome', compact('doctors'));
@@ -27,8 +26,7 @@ class FrontendController extends Controller
         $departments = Department::latest()->limit(10)->get();
         $medecins = User::latest()->limit(4)->where('role_id', 1)->get();
         $posts = Post::where('status', 1)->get();
-        $testimonial = Testimonial::orderBy('id', 'DESC')->first();
-        return view('home', compact('doctors', 'medecins', 'departments', 'posts', 'testimonial'));
+        return view('home', compact('doctors', 'medecins', 'departments', 'posts',));
     }
 
     public function show($doctorId, $date)
@@ -49,14 +47,13 @@ class FrontendController extends Controller
 
     public function store(Request $request)
     {
-        date_default_timezone_set('Australia/Melbourne');
+        date_default_timezone_set('Africa/Casablanca');
 
         $request->validate(['time' => 'required']);
         $check = $this->checkBookingTimeInterval();
         if ($check) {
             return redirect()->back()->with('message', 'Vous avez déjà pris un rendez-vous. Veuillez patienter pour prendre un prochain rendez-vous !');
         }
-
 
         Booking::create([
             'user_id' => auth()->user()->id,
@@ -84,7 +81,7 @@ class FrontendController extends Controller
         } catch (Exception $e) {
         }
 
-        return redirect()->back()->with('message', 'Votre rendez-vous a été pris !');
+        return redirect()->back()->with('message', 'Votre demande du rendez-vous a été pris !');
     }
 
     public function checkBookingTimeInterval()

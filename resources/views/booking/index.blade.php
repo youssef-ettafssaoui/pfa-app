@@ -34,6 +34,7 @@
                                 <th scope="col">Date pour</th>
                                 <th scope="col">Date Création</th>
                                 <th scope="col">Status</th>
+                                <th scope="col"></th>
                             </tr>
                         </thead>
                         <tbody>
@@ -43,7 +44,7 @@
                                     <td>{{ $appointment->doctor->name }}</td>
                                     <td>{{ $appointment->time }}</td>
                                     <td>{{ $appointment->date }}</td>
-                                    <td>{{ $appointment->created_at }}</td>
+                                    <td>{{ $appointment->created_at->diffForHumans() }}</td>
                                     <td>
                                         @if ($appointment->status == 0)
                                             <button class="btn btn-primary">Non visité</button>

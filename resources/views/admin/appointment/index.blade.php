@@ -6,7 +6,7 @@
         <div class="row align-items-end">
             <div class="col-lg-8">
                 <div class="page-header-title">
-                    <i class="ik ik-calendar bg-warning"></i>
+                    <i class="ik ik-calendar bg-primary"></i>
                     <div class="d-inline">
                         <h5>Médecins</h5>
                         <span>Horraire des Rendez-vous </span>
@@ -50,11 +50,11 @@
 
             <div class="card">
                 <div class="card-header">
-                    <h5> <i class="ik ik-calendar text-warning"></i>&nbsp;Choisissez une Date </h5>
+                    <h5> <i class="ik ik-calendar text-primary"></i>&nbsp;Choisissez une Date </h5>
                     <br>
 
                     @if (isset($date))
-                        <h6> <i class="ik ik-calendar text-warning"></i>&nbsp; Votre emploi du temps pour :
+                        <h6> <i class="ik ik-calendar text-primary"></i>&nbsp; Votre emploi du temps pour :
                             {{ $date }} </h6>
                     @endif
 
@@ -62,7 +62,7 @@
                 <div class="card-body">
                     <input type="date" class="form-control" name="date">
                     <br>
-                    <button type="submit" class="btn btn-warning text-dark">Vérifier la Disponibilité</button>
+                    <button type="submit" class="btn btn-primary text-white">Vérifier la Disponibilité</button>
                 </div>
             </div>
         </form>
@@ -314,7 +314,7 @@
 @else
     <h3>Vous avez ({{ $myappointments->count() }}) Rendez-vous : </h3>
 
-    <table class="table table-striped">
+    <table class="table table-white">
         <thead>
             <tr>
                 <th scope="col">#</th>
@@ -329,12 +329,12 @@
                 <tr>
 
                     <th scope="row"></th>
-                    <td>{{ $appoinment->doctor->name }}</td>
+                    <td class="text-primary font-weight-bold">Dr. {{ $appoinment->doctor->name }}</td>
                     <td>{{ $appoinment->date }}</td>
                     <td>
                         <form action="{{ route('appointment.check') }}" method="post">@csrf
                             <input type="hidden" name="date" value="{{ $appoinment->date }}">
-                            <button type="submit" class="btn btn-warning text-dark">Consulter/Modifier</button>
+                            <button type="submit" class="btn btn-primary text-white">Consulter/Modifier</button>
                         </form>
                     </td>
                 </tr>

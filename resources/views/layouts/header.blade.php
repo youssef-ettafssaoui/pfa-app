@@ -9,14 +9,14 @@
     <meta charset="utf-8">
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-    <title>FlexStart Bootstrap Template - Index</title>
+    <title>{{ $setting->hopital_name }}</title>
     <meta name="description" content="{{ $seo->meta_description }}">
     <meta name="author" content="{{ $seo->meta_author }}">
     <meta name="keywords" content="{{ $seo->meta_keyword }}">
 
     <!-- Favicons -->
-    <link href="{{ asset('front/assets/img/favicon.png') }}" rel="icon">
-    <link href="{{ asset('front/assets/img/apple-touch-icon.png') }}" rel="apple-touch-icon">
+    <link href="{{ asset($setting->logo) }}" rel="icon">
+    <link href="{{ asset($setting->logo) }}" rel="apple-touch-icon">
 
     <!-- Google Fonts -->
     <link
@@ -62,7 +62,7 @@
 
             <a href="{{ route('accueil') }}" class="logo d-flex align-items-center">
                 <img src="{{ asset($setting->logo) }}" alt="logo">
-                <span>{{ $setting->hopital_name }}</span>
+                <span style="font-size: 20px">{{ $setting->hopital_name }}</span>
             </a>
 
             <nav id="navbar" class="navbar">
@@ -71,6 +71,7 @@
                     <li><a class="nav-link scrollto" href="#services">Services</a></li>
                     <li><a class="nav-link scrollto" href="#team">Médecins</a></li>
                     <li><a class="nav-link scrollto" href="#contact">Contact</a></li>
+                    <li><a class="nav-link scrollto" href="{{ route('reserver') }}">Réserver</a></li>
                     @if (!Auth::check())
                         <li><a href="{{ url('/register') }}">Espace Patients</a></li>
                         <li><a class="getstarted scrollto" href="{{ url('/login') }}">Se connecter</a></li>
